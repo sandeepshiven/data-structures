@@ -9,14 +9,13 @@ typedef struct
 
 Node *head = NULL;
 
-
 void main()
 {
     int n;
     while(1)
     {
         system("cls");
-        printf("What do you want to do? \n1. Insertion\n2. Reversal\n3. Display\n4.Exit\n");
+        printf("What do you want to do?\n1. Insert\n2. Print\n3. Print Reverse\n4. Exit\n");
         scanf("%d",&n);
         switch(n)
         {
@@ -25,36 +24,29 @@ void main()
             break;
 
         case 2:
-            reverse_list();
+            printf("You list is\n");
+            print_list(head);
             break;
 
         case 3:
-            print_list();
+            printf("Your list reversed is\n");
+            print_reverse(head);
             break;
 
         case 4:
             exit(0);
 
-        default:printf("Invalid selection\n");
-
+        default : printf("Invalid Choice\n");
         }
         _getch();
     }
 }
 
 
-Node *create_node()
-{
-    Node *n;
-    n = (Node *)malloc(sizeof(n));
-    return(n);
-}
-
 
 void insert_node()
 {
-    Node *temp,*temp2;
-    temp = create_node();
+    Node *temp = (Node *)malloc(sizeof(Node));
     temp->next = NULL;
     printf("Enter a number\n");
     scanf("%d",&temp->data);
@@ -63,44 +55,47 @@ void insert_node()
         head = temp;
         return;
     }
-    temp2 = head;
+    Node *temp2 = head;
     while(temp2->next != NULL)
     {
         temp2 = temp2->next;
     }
     temp2->next = temp;
-
 }
 
 
-void reverse_list()
+void print_list(Node *p)
 {
-    Node *current,*prev,*next;
-
-    current = head;
-    prev = NULL;
-    while(current != NULL)
+    if(p == NULL)
     {
-        next = current->next;
-        current->next = prev;
-        prev = current;
-        current = next;
+        return;
     }
-    head = prev;
+    printf("%d ",p->data);
+    print_list(p->next);
 }
 
 
-void print_list()
+void print_reverse(Node *p)
 {
-    Node *p;
-    p = head;
-    printf("Your final list is\n");
-    while(p != NULL)
+    if(p == NULL)
     {
-        printf("%d ",p->data);
-        p = p->next;
+        return;
     }
+    print_reverse(p->next);
+    printf("%d ",p->data);
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
