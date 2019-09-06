@@ -73,15 +73,14 @@ void reverse()
     {
         stack[i++]->next=temp;
         prev = temp;
-        temp = temp.next;
+        temp = temp->next;
     }
     head->next = NULL;
-    temp = head;
     head = prev;
 
     while(temp)
     {
-        prev-
+
     }
 
 
