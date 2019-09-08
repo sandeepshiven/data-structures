@@ -3,6 +3,9 @@
 #define MAX 1000
 #include"conio.h"
 #include"stdlib.h"
+#include"curses.h"
+#include"getch.h"
+
 
 
 
@@ -22,11 +25,11 @@ void main()
     int n;
     while(1)
     {
-        fflush(stdin);
+
         system("clear");
-        printf("\nWhat do you want to do?\n1. Insert\n2. Print\n3. Reverse\n4. Exit\n");
+        printf("\nWhat do you want to do?\n1. Insert\n2. Print\n3. Reverse\n4. Exit\nEnter your choice: ");
         scanf("%d",&n);
-        fflush(stdin);
+
         switch(n)
         {
         case 1:
@@ -47,7 +50,8 @@ void main()
         default: printf("Invalid selection\n");
 
         }
-        getch();
+
+       mygetch();
     }
 }
 
@@ -57,10 +61,8 @@ void insert()
     int num;
     Node *temp = (Node *)malloc(sizeof(Node));
     temp->next = NULL;
-    fflush(stdin);
     printf("Enter a number\n");
     scanf("%d",&temp->data);
-    fflush(stdin);
     if(head == NULL)
     {
         stack[0] = NULL;
@@ -100,6 +102,7 @@ void reverse()
 void print()
 {
     Node *temp = head;
+    printf("Your final list is:\n");
     if (head == NULL)
     {
         printf("List Empty\n");
